@@ -8,3 +8,8 @@
 也没什么可说的，那么，我们正文见！<br>
 笔者 Yang458<br>
 2026/9/24 于浙江
+::: details 原文档
+> 原文为WPS word,已转为pdf，格式可能因为种种原因而错乱、显示错误。
+<iframe src="../assets/doc.pdf" width=600px height=700px></iframe>
+
+:::
