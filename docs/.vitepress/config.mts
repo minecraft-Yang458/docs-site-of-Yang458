@@ -68,7 +68,16 @@ export default defineConfig({
         collapsed: false, // 想默认折叠就加，不想折叠就删掉这行
         items: [
           { text: '序言', link: '/zh/computer/' },
-          { text: '原序', link: '/zh/computer/yuanxv' }
+          { text: '原序', link: '/zh/computer/yuanxv' },
+          {
+            text: '第一卷 计算机理论',
+            collapsed: true,
+            items: [
+              { text: '卷首语', link: '/zh/computer/j1/' },
+              { text: '第一章 计算机的起源', link: '/zh/computer/j1/z1' },
+              //{ text: '第三节 计算机的未来', link: '/zh/computer/c-1-3' },
+            ]
+          }
         ]
       },
 
