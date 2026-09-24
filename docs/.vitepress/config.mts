@@ -68,7 +68,7 @@ export default defineConfig({
         collapsed: false, // 想默认折叠就加，不想折叠就删掉这行
         items: [
           { text: '序言', link: '/zh/computer/' },
-          //{ text: '第二篇文章', link: '/zh/essay/post-2' }
+          { text: '原序', link: '/zh/computer/yuanxv' }
         ]
       },
 
