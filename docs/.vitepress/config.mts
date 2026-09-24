@@ -8,17 +8,21 @@ export default defineConfig({
     zh: {
       label: '简体中文',
       lang: 'zh',
-      link: '/zh/'
+      link: '/zh/',
+      themeConfig: {
+       
+      }
     }
   },
   themeConfig: {
+    
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '首页', link: '/zh/' },
       { text: '铁脉RAILWAY', link: '/zh/railway/' },
       { text: '计算机', link: '/zh/computer/' },
     ],
-
+    
     search: {
       provider: 'local',
       options: {
@@ -81,6 +85,7 @@ export default defineConfig({
       copyright: 'Copyright © 2026 Yang458.'
     },
 
+    
 
   },
   lastUpdated: true
