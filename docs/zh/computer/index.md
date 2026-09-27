@@ -13,3 +13,6 @@
 <iframe src="../assets/doc.pdf" width=600px height=700px></iframe>
 
 :::
+<!-- :::tip
+本书包含人工智能生成合成内容（或由人工智能生成合成），请注意甄别。
+::: -->
