@@ -1,0 +1,65 @@
+# .github/workflows/deploy.yml
+name: Deploy VitePress site to Pages
+
+on:
+  push:
+    branches: [main] # 按需改成你的主分支名，比如 master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 如果使用 lastUpdated 功能，需要完整 git 历史
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm' # 改为 npm 缓存
+          # 如果你的 package-lock.json 在根目录，其实不需要写 cache-dependency-path
+          # 如果它在子目录（比如 docs/package-lock.json），才需要写：
+          # cache-dependency-path: 'docs/package-lock.json'
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Install dependencies
+        run: npm ci # npm 推荐使用 npm ci 进行干净安装，需要 package-lock.json 存在
+        # 如果报错说找不到 package-lock.json，请改为 npm install，并确保在本地运行过 npm install 并提交了 lock 文件
+
+      - name: Build with VitePress
+        # 注意：npm run 传参需要加额外的 --
+        run: npm run docs:build -- --base "${{ steps.pages.outputs.base_path }}"
+        # 如果你的构建脚本名字不叫 docs:build，请改成你 package.json 里的名字，比如：
+        # run: npm run build -- --base "${{ steps.pages.outputs.base_path }}"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist # VitePress 默认构建输出目录，按需修改
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
