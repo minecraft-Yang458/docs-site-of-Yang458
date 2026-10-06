@@ -43,7 +43,7 @@ jobs:
 
       - name: Build with VitePress
         # 注意：npm run 传参需要加额外的 --
-        run: npm run docs:build -- --base "${{ steps.pages.outputs.base_path }}"
+        run: npm run build -- --base "${{ steps.pages.outputs.base_path }}"
         # 如果你的构建脚本名字不叫 docs:build，请改成你 package.json 里的名字，比如：
         # run: npm run build -- --base "${{ steps.pages.outputs.base_path }}"
 
